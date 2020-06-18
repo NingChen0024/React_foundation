@@ -13,6 +13,17 @@ import InlineStyle from './components/InlineStyle';
 import './appStyle.css'
 import styles from './appStyle.module.css'
 import Form from './components/Form'
+import LifecycleA from './components/LifecycleA';
+import FragmentDemo from './components/FragmentDemo';
+import Table from './components/Table';
+import PureComp from './components/PureComp';
+import RefsDemo from './components/RefsDemo';
+import FocusInput from './components/FocusInput';
+import FRParentInput from './components/FRParentInput';
+import PortalDemo from './components/PortalDemo';
+import ClickCounter from './components/ClickCounter';
+import HoverCounter from './components/HoverCounter';
+
 
 function App() {
   return (
@@ -22,8 +33,9 @@ function App() {
       <Counter/>
       <NameList/>
       <StyleSheet primary={true}/>
-      <InlineStyle/>
-      <Form/>
+      <ClickCounter name='Ning'/>
+      <HoverCounter/>
+   
     </div>
   );
 }
