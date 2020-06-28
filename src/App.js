@@ -23,7 +23,21 @@ import FRParentInput from './components/FRParentInput';
 import PortalDemo from './components/PortalDemo';
 import ClickCounter from './components/ClickCounter';
 import HoverCounter from './components/HoverCounter';
-
+import Hero from './components/Hero'
+import ErrorBoundary from './components/ErrorBoundary';
+import ClickCounterTwo from './components/ClickCounterTwo';
+import HoverCounterTwo from './components/HoverCounterTwo';
+import User from './components/User';
+import CounterTwo from './components/CounterTwo'
+import ComponentA from './components/ComponentA'
+import { UserProvider } from './components/userContext';
+import PostList from './components/PostList';
+import PostForm from './components/PostForm';
+import  ClassCounter from './hooks/ClassCounter'
+import HookCounter from './hooks/HookCounter';
+import HookCounterTwo from './hooks/HookCounterTwo';
+import HookCounterThree from './hooks/HookCounterThree';
+import HookCounterFour from './hooks/HookCounterFour';
 
 function App() {
   return (
@@ -34,8 +48,37 @@ function App() {
       <NameList/>
       <StyleSheet primary={true}/>
       <ClickCounter name='Ning'/>
-      <HoverCounter/>
-   
+      <HoverCounter name='Ning'/>
+      <FRParentInput/>
+      <ErrorBoundary>
+        <Hero heroname="Batman"/>
+        <Hero heroname="Joker"/>
+      </ErrorBoundary>
+      <ClickCounterTwo/>
+      <HoverCounterTwo/>
+      <User render= {(isLoggedIn) => isLoggedIn ? "Ning": "User"}/>
+      {/* <CounterTwo 
+        render={(count, incrementCount) => (
+          <ClickCounterTwo count={count} incrementCount={incrementCount}/>
+        )}
+      /> */}
+      <CounterTwo>
+        {(count, incrementCount) => (
+          <HoverCounterTwo count={count} incrementCount={incrementCount}/>
+        )}
+      </CounterTwo>
+
+      <UserProvider value='Context Value'>
+        <ComponentA/>
+      </UserProvider>
+      
+      {/* <UserProvider value='Context Value'>
+        <ComponentA/>
+      </UserProvider> */}
+      {/* <PostList/> */}
+      
+      {/* <PostForm/> */}
+      <HookCounterFour/>
     </div>
   );
 }

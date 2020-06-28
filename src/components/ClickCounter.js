@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import WithCounter from './WithCounter'
 import withCounter from './WithCounter'
 
 class ClickCounter extends Component {

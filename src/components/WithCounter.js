@@ -1,6 +1,7 @@
 import React from 'react'
 
 const withCounter = (WrappedComponent, incrementNumber) => {
+    
     class WithCounter extends React.Component{
         constructor(props) {
             super(props)
