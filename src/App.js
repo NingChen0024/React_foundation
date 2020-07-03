@@ -38,6 +38,12 @@ import HookCounter from './hooks/HookCounter';
 import HookCounterTwo from './hooks/HookCounterTwo';
 import HookCounterThree from './hooks/HookCounterThree';
 import HookCounterFour from './hooks/HookCounterFour';
+import HookCounterFive from './hooks/HookCounterFive';
+import HookMouse from './hooks/HookMouse';
+import HookMouseContainer from './hooks/HookMouseContainer';
+import IntervalClassCounter from './hooks/IntervalClassCounter';
+import IntervalHookCounter from './hooks/IntervalHookCounter';
+import DataFetching from './hooks/DataFetching';
 
 function App() {
   return (
@@ -78,7 +84,10 @@ function App() {
       {/* <PostList/> */}
       
       {/* <PostForm/> */}
-      <HookCounterFour/>
+      {/* <HookCounterFive/> */}
+      {/* <HookMouseContainer/> */}
+      {/* <IntervalClassCounter/> */}
+      <DataFetching/>
     </div>
   );
 }

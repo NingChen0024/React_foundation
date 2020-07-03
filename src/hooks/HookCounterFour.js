@@ -10,6 +10,7 @@ function HookCounterFour() {
             value : Math.floor(Math.random() * 10 + 1)
         }])
     }
+    
     return (
         <div>
             <button onClick={addItem}>Add a item</button>
