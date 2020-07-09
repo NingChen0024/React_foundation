@@ -1,18 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import HookMouse from './HookMouse'
 
-function HookMouseContainer() {
+function HookMouseContainer () {
+  const [display, setDisplay] = useState(true)
 
-    const [display, setDisplay] = useState(true)
-
-    
-    return (
-        <div>
-            <button onClick={() => setDisplay(!display)}>Toggle display </button>
-            {display && <HookMouse/>}
-            {/* display HookMouse only when display is true */}
-        </div>
-    )
+  return (
+    <div>
+      <button onClick={() => setDisplay(!display)}>Toggle display </button>
+      {display && <HookMouse />}
+      {/* display HookMouse only when display is true */}
+    </div>
+  )
 }
 
 export default HookMouseContainer

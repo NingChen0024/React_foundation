@@ -1,24 +1,23 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
-function HookCounterTwo() {
+function HookCounterTwo () {
+  const initialCount = 0
+  const [count, setCount] = useState(initialCount)
 
-    const initialCount = 0
-    const [count, setCount] = useState(initialCount)
-
-    const incrementFive = () => {
-        for(let i=0; i<5; i++){
-            setCount(prevCount => prevCount+ 1)
-        }
+  const incrementFive = () => {
+    for (let i = 0; i < 5; i++) {
+      setCount(prevCount => prevCount + 1)
     }
-    return (
-        <div>
-            count: {count}
-            <button onClick={() => setCount(initialCount)}>Reset</button>
-            <button onClick={() => setCount(prevCount => prevCount + 1)}>Increment</button>
-            <button onClick={() => setCount(prevCount => prevCount + 1)}>Decrement</button>
-            <button onClick={incrementFive}>Increment Five</button>
-        </div>
-    )
+  }
+  return (
+    <div>
+              count: {count}
+      <button onClick={() => setCount(initialCount)}>Reset</button>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>Increment</button>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>Decrement</button>
+      <button onClick={incrementFive}>Increment Five</button>
+    </div>
+  )
 }
 
 export default HookCounterTwo

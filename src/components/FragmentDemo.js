@@ -1,15 +1,17 @@
 import React from 'react'
 
-function FragmentDemo() {
-    return (
-        <React.Fragment>
-            <h1>
+function FragmentDemo () {
+  return (
+    <>
+      <h1>
                 Fragment Demo
-            </h1>
+      </h1>
 
-            <p>extra part</p>
-        </React.Fragment>
-    )
+      <p>
+        extra part
+      </p>
+    </>
+  )
 }
 
 export default FragmentDemo

@@ -1,46 +1,44 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-function DataFetching() {
+function DataFetching () {
+  const [post, setPost] = useState([])
+  const [id, setId] = useState(1)
+  const [idFromButtonClick, setIdFromButtonClick] = useState(1)
 
-    const [post, setPost] = useState([])
-    const [id, setId] = useState(1)
-    const [idFromButtonClick, setIdFromButtonClick] = useState(1)
+  useEffect(() => {
+    console.log('Fetch')
 
-    useEffect(() => {
+    axios.get(`https://jsonplaceholder.typicode.com/posts/${idFromButtonClick}`)
+      .then(res => {
+        console.log(res)
+        setPost(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [idFromButtonClick])
 
-        console.log('Fetch')
+  const handleClick = () => {
+    setIdFromButtonClick(id)
+  }// put id from input to idButtonClick
 
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${idFromButtonClick}`)
-        .then(res => {
-            console.log(res)
-            setPost(res.data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    },[idFromButtonClick])
+  return (
+    <div>
 
-    const handleClick = () => {
-        setIdFromButtonClick(id)
-    }//put id from input to idButtonClick
-
-    return (
-        <div>
-            
-            {/* <ul>
+      {/* <ul>
                 {posts.map(post => (
                     <li key = {post.id}>{post.title}</li>
                 ))}
             </ul> */}
 
-            <h5 key = {post.id}>{post.title}</h5>
+      <h5 key={post.id}>{post.title}</h5>
 
-            <input type='text' value={id} onChange={e => setId(e.target.value)}/>
-            <button type='button' onClick={handleClick}>Fetch Post</button>
+      <input type='text' value={id} onChange={e => setId(e.target.value)} />
+      <button type='button' onClick={handleClick}>Fetch Post</button>
 
-        </div>
-    )
+    </div>
+  )
 }
 
 export default DataFetching

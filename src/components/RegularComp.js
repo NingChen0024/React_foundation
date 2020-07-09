@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 
 class RegularComp extends Component {
-    render() {
-        console.log("Regular")
-        return (
-            <div>
+  render () {
+    console.log('Regular')
+    return (
+      <div>
                regular {this.props.name}
-            </div>
-        )
-    }
+      </div>
+    )
+  }
 }
 
 export default RegularComp

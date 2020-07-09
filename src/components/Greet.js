@@ -1,16 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 const Greet = props => {
-
-    const {name, heroName} = props
-    Console.log(props)
-    return(
-        <div>
-            <h1>
+  const { name, heroName } = props
+  console.log(props)
+  return (
+    <div>
+      <h1>
                 Hello {name} aka {heroName}
-            </h1>
-        </div>
-    )
+      </h1>
+    </div>
+  )
 }
 
 export default Greet
