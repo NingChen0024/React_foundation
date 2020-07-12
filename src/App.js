@@ -17,6 +17,9 @@ import CounterTwo from './components/CounterTwo'
 import ComponentA from './components/ComponentA'
 import { UserProvider } from './components/userContext'
 import ComponentC from './hooks/ComponentC'
+import UserRenderCounter from './hooks/UseRenderCounter'
+import UserRenderCounterTwo from './hooks/UseRenderCounterTwo'
+import UseRenderCounterThree from './hooks/UseRenderCounterThree'
 
 export const userContext = React.createContext()// define context
 export const userContextTwo = React.createContext()
@@ -60,6 +63,9 @@ function App () {
           <ComponentC />
         </userContextTwo.Provider>
       </userContext.Provider>
+
+      
+      <UseRenderCounterThree/>
 
     </div>
   )
