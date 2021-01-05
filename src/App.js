@@ -20,7 +20,7 @@ import ComponentC from './hooks/ComponentC'
 import UserRenderCounter from './hooks/UseRenderCounter'
 import UserRenderCounterTwo from './hooks/UseRenderCounterTwo'
 import UseRenderCounterThree from './hooks/UseRenderCounterThree'
-
+import DataFetching from './hooks/DataFetching'
 export const userContext = React.createContext()// define context
 export const userContextTwo = React.createContext()
 
@@ -66,6 +66,8 @@ function App () {
 
       
       <UseRenderCounterThree/>
+
+      <DataFetching/>
 
     </div>
   )
