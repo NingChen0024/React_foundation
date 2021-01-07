@@ -53,68 +53,70 @@ async function makeSynchronousRequest(index) {
 }
 
 
-// async function getName(code){
-//   var i = 1
-//   isCompleted = false
-//   result = null
-//   while (!isCompleted){
-//     var result = await makeSynchronousRequest(i)
-//     if (i <= result.total_pages){
-//       i++
-//       result.data.map(country => {
-//         if (country.alpha2Code === code){
-//           iscompleted =true
-//           result =  country.name
-//         }
-//       })
-    
-//     if (result){
-//       break
-//     }
-//     }else{
-//       iscompleted =true
-//       console.log("no matched results")
-//       return false
-//     }
-//   }
-
-//   return result
-// }
-
-// var res = getName("AF")
-
-// console.log(res)
-
-
-
-(async (code) => {
+async function getName(code){
   var i = 1
   isCompleted = false
-  var resultTwo = null
+  var finalResult = null
   while (!isCompleted){
     var result = await makeSynchronousRequest(i)
-    
     if (i <= result.total_pages){
       i++
       result.data.map(country => {
         if (country.alpha2Code === code){
           iscompleted =true
-          resultTwo = country.name
+          finalResult =  country.name
         }
       })
-
-      if (resultTwo){
-        break
-      }
-
+    
+    if (finalResult){
+      break
+    }
     }else{
       iscompleted =true
       console.log("no matched results")
       return false
     }
   }
-console.log(resultTwo)
-})("GP")
+  return finalResult
+}
+
+// getName("AF")
+//   .then((value) => {
+//     console.log(value)
+//     return value
+//   }).then((value) => {
+//     console.log(value+"ewwe")
+//   })
+
+
+// (async (code) => {
+//   var i = 1
+//   isCompleted = false
+//   var resultTwo = null
+//   while (!isCompleted){
+//     var result = await makeSynchronousRequest(i)
+    
+//     if (i <= result.total_pages){
+//       i++
+//       result.data.map(country => {
+//         if (country.alpha2Code === code){
+//           iscompleted =true
+//           resultTwo = country.name
+//         }
+//       })
+
+//       if (resultTwo){
+//         break
+//       }
+
+//     }else{
+//       iscompleted =true
+//       console.log("no matched results")
+//       return false
+//     }
+//   }
+// console.log(resultTwo)
+// })("GP")
 
 
 
@@ -122,39 +124,48 @@ console.log(resultTwo)
 function getCountryName(code) {
     var i = 1
     var flag = true
+    var final = null
+
+    return new Promise((resolve, reject) => {
+      https.get(`https://jsonmock.hackerrank.com/api/countries?page=1`, (response) => {
+        let chunks_of_data = [];
   
-
-        let myRequest = https.get(`https://jsonmock.hackerrank.com/api/countries?page=${i}`, resp => {
-
-           let data = ''
-
-            resp.on('data', (chunk) => {
-              console.log("--chunk--", data.length)
-              data += chunk;
-            });
-          
-            resp.on('end', () => {
-              var newData = JSON.parse(data)
+        response.on('data', (fragments) => {
+          chunks_of_data.push(fragments);
+        });
+  
+        response.on('end', () => {
+          var newData = JSON.parse(chunks_of_data)
               if (i <= newData.total_pages){
                 i++
                 newData.data.map((state) => {
-                    console.log(state)
                     if (state.alpha2Code === code){
                         flag = false
-                        return state.name               
+                        final = state.name               
                     }
                 })
               }else{
-                  flag = false
-                  return null                
+                  flag = false              
               }
-            });
-        })
-    
-    
-    // write your code here
-    // API endpoint: https://jsonmock.hackerrank.com/api/countries?page=<PAGE_NUMBER>
+              
+          resolve(final)
+        });
+
+        response.on('error', (error) => {
+          reject(error);
+        });
+      });
+    });
 }
+
+// (
+//   async () => {
+//     var p = await getCountryName("AF")
+//     console.log(p)
+//   }
+// )()
+
+
 
 function getTested(){
 
@@ -178,23 +189,6 @@ function getTested(){
 
 }
 
-function node(){
-  const req = https.request(option, res => {
-    console.log(`statusCode: ${res.statusCode}`)
-  
-    res.on('data', d => {
-      process.stdout.write(d)
-    })
-  })
-  
-  req.on('error', error => {
-    console.error(error)
-  })
-  
-  req.end()
-}
-
-// node()
 
 // getTested()
 
