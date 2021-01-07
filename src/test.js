@@ -17,6 +17,108 @@ const option = {
 }
 
 
+function getPromise(index) {
+	return new Promise((resolve, reject) => {
+		https.get(`https://jsonmock.hackerrank.com/api/countries?page=${index}`, (response) => {
+			let chunks_of_data = [];
+
+			response.on('data', (fragments) => {
+				chunks_of_data.push(fragments);
+			});
+
+			response.on('end', () => {
+				let response_body = Buffer.concat(chunks_of_data);
+				resolve(response_body.toString());
+			});
+
+			response.on('error', (error) => {
+				reject(error);
+			});
+		});
+	});
+}
+
+async function makeSynchronousRequest(index) {
+	try {
+		let http_promise = getPromise(index);
+		let response_body = await http_promise;
+
+		// holds response from server that is passed when Promise is resolved
+    return JSON.parse(response_body)
+	}
+	catch(error) {
+		// Promise rejected
+		console.log(error);
+	}
+}
+
+
+// async function getName(code){
+//   var i = 1
+//   isCompleted = false
+//   result = null
+//   while (!isCompleted){
+//     var result = await makeSynchronousRequest(i)
+//     if (i <= result.total_pages){
+//       i++
+//       result.data.map(country => {
+//         if (country.alpha2Code === code){
+//           iscompleted =true
+//           result =  country.name
+//         }
+//       })
+    
+//     if (result){
+//       break
+//     }
+//     }else{
+//       iscompleted =true
+//       console.log("no matched results")
+//       return false
+//     }
+//   }
+
+//   return result
+// }
+
+// var res = getName("AF")
+
+// console.log(res)
+
+
+
+(async (code) => {
+  var i = 1
+  isCompleted = false
+  var resultTwo = null
+  while (!isCompleted){
+    var result = await makeSynchronousRequest(i)
+    
+    if (i <= result.total_pages){
+      i++
+      result.data.map(country => {
+        if (country.alpha2Code === code){
+          iscompleted =true
+          resultTwo = country.name
+        }
+      })
+
+      if (resultTwo){
+        break
+      }
+
+    }else{
+      iscompleted =true
+      console.log("no matched results")
+      return false
+    }
+  }
+console.log(resultTwo)
+})("GP")
+
+
+
+
 function getCountryName(code) {
     var i = 1
     var flag = true
@@ -92,7 +194,7 @@ function node(){
   req.end()
 }
 
-node()
+// node()
 
 // getTested()
 
